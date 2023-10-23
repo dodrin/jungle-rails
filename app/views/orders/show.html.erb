@@ -10,42 +10,22 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">image</th>
         <th scope="col">name</th>
+        <th scope="col">image</th>
         <th scope="col">description</th>
+        <th scope="col">price</th>
         <th scope="col">quantity</th>
         <th scope="col">line total</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
+      <% @order.line_items.each do |line_item| %>
+        <%= render 'orders/line_item', line_item: line_item, quantity: line_item.quantity %>
+      <% end %>
       <tr class="table-active">
-        <th scope="row" colspan="5">Total</th>
-        <td>$1000</td>
+        <th scope="row" colspan="4">Total:</th>
+        <td><%= @order.line_items.count %></td>
+        <td><%= humanized_money_with_symbol @order.total_cents / 100.0 %></td>
       </tr>
     </tbody>
   </table>

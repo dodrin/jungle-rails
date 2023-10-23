@@ -1,7 +1,7 @@
 <section class="orders-show">
 
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <h1>Order #<%= @order.id %>: <%= @order.email%></h1>
   </header>
 
   <div class="order-summary jumbotron">
@@ -10,12 +10,12 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">name</th>
-        <th scope="col">image</th>
-        <th scope="col">description</th>
-        <th scope="col">price</th>
-        <th scope="col">quantity</th>
-        <th scope="col">line total</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Line total</th>
       </tr>
     </thead>
     <tbody>

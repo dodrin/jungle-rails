@@ -23,9 +23,6 @@ Rails.application.routes.draw do
     resources :categories, only: [:new, :index, :create]
   end
 
-	# We can use users#new for now, or replace this with the controller and action you want to be the site root:
-	# root to: 'users#new'
-  	
   # sign up page with form:
   get 'users/new' => 'users#new', as: :new_user
 

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # ----- add these lines here: -----
   
     def new
       @user = User.new
@@ -24,11 +23,9 @@ class UsersController < ApplicationController
   
   private
   
-    def user_params
-      # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
-      # that can be submitted by a form to the user model #=> require(:user)
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+  
     
-  # ----- end of added lines -----
   end

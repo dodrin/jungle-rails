@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
 
+  # Make the current_user method available to views also, not just controllers:
+  helper_method :current_user
+  
+  # Define the current_user method:
+  def current_user
+    # Look up the current user based on user_id in the session cookie:
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
   private
 
   def cart
@@ -20,7 +29,6 @@ class ApplicationController < ActionController::Base
     enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
   end
   helper_method :cart_subtotal_cents
-
 
   def update_cart(new_cart)
     cookies[:cart] = {

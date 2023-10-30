@@ -10,9 +10,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <%= render 'layouts/top_nav' %>
 
+  <%= render 'layouts/login_bar' %>
+
+  <% flash.each do |type, message| %>
+    <div class="alert alert-warning">
+      <%= message %>
+    </div>
+  <% end %>
+  
   <main class="container">
     <%= yield %>
   </main>

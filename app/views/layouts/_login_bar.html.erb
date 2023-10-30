@@ -1,0 +1,9 @@
+<div class="alert alert-light text-end" role="alert">
+  <% if current_user %>
+      <% # current_user will return true if a user is logged in %>
+      <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Log Out', logout_path, method: :delete, class: 'alert-link' %>
+  <% else %>
+      <% # not logged in %>
+      <%= link_to 'Log In', login_path, class: 'alert-link' %> or <%= link_to 'Sign Up', new_user_path, class: 'alert-link' %>
+  <% end %>
+</div>

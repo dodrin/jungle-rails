@@ -14,6 +14,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
+    # Step 1 tests
     it 'should have matching password and password_confirmation' do
       user = User.create(
         first_name: 'Kuma',
@@ -80,6 +81,28 @@ RSpec.describe User, type: :model do
         last_name: 'test',
         email: 'test@test.com',
         password_confirmation: 'test345'
+      )
+      expect(user).to_not be_valid   
+    end
+
+    it 'should have password confirmation' do
+      user = User.create(
+        first_name: 'Kuma',
+        last_name: 'test',
+        email: 'test@test.com',
+        password: 'test123'
+      )
+      expect(user).to_not be_valid   
+    end
+
+    # Step 2 test
+    it 'should have minimum 5 characters of password' do
+      user = User.create(
+        first_name: 'Kuma',
+        last_name: 'Kumada',
+        email: 'test@test.com',
+        password: 'test',
+        password_confirmation: 'test'
       )
       expect(user).to_not be_valid   
     end

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  
   describe 'Validation' do
-
     it 'should create a valid user' do
       user = User.create(
         first_name: 'Kuma',
@@ -106,7 +106,21 @@ RSpec.describe User, type: :model do
       )
       expect(user).to_not be_valid   
     end
+  end
 
+  describe 'authenticate_with_credentials' do
+    it 'returns nil if password is incorrect' do
+      user = User.create(
+        first_name: 'Rina',
+        last_name: 'Kuma',
+        email: 'test@test.com',
+        password: 'password',
+        password_confirmation: 'password',
+      )
 
+      auth = User.authenticate_with_credentials('test@test.com', 'kuma')
+      expect(auth).to be_nil
+
+    end
   end
 end

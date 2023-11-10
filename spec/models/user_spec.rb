@@ -120,7 +120,32 @@ RSpec.describe User, type: :model do
 
       auth = User.authenticate_with_credentials('test@test.com', 'kuma')
       expect(auth).to be_nil
+    end
 
+    it 'should still be authenticated with trailing spaces in email' do
+      user = User.create(
+        first_name: 'Rina',
+        last_name: 'Kuma',
+        email: 'test@test.com',
+        password: 'password',
+        password_confirmation: 'password',
+      )
+
+      auth = User.authenticate_with_credentials(' test@test.com ', 'password')
+      expect(auth).not_to be_nil
+    end
+
+    it 'should be authenticated with wrong case email' do
+      user = User.create(
+        first_name: 'Rina',
+        last_name: 'Kuma',
+        email: 'test@test.com',
+        password: 'password',
+        password_confirmation: 'password',
+      )
+
+      auth = User.authenticate_with_credentials('TEST@test.COM', 'password')
+      expect(auth).not_to be_nil
     end
   end
 end
